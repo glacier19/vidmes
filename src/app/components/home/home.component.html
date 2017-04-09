@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-4 col-sm-offset-4">
+    <form class="form-signin" (ngSubmit)="onSubmitInviteForm()" [formGroup]="inviteForm"> <!-- [formGroup]="inviteForm" -->
+      <h2 class="form-signin-heading">Enter oponent email</h2>
+      <div class="form-group"> <!-- id="inputEmail" -->
+        <label class="sr-only">Email address</label>
+        <input type="email" formControlName="inputEmail"
+        class="form-control" placeholder="Email address" required autofocus> <!-- formControlName="inputEmail" -->
+        <div *ngIf="!inviteForm.get(['inputEmail']).valid">
+        </div>
+        <!--<div [hidden]="inputEmail.valid || inputEmail.pristine">-->
+          <!--Invalid Email-->
+        <!--</div>-->
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disable]="inputEmail.valid || inputEmail.pristine">send</button>
+      </div>
+    </form>
+    <p>Form value: {{ inviteForm.value | json }}</p>
+    <p>Form status: {{ inviteForm.status | json }}</p>
+    <room-component [roomData]="roomData"></room-component>
+  </div>
+
+</div>
